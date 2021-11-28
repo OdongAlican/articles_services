@@ -1,9 +1,15 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteArticle } from '../actions/articles';
 import Image from '../images/articles.jpg';
 
 const Article = function ({ article }) {
+  const dispatch = useDispatch();
+  const deleteMethod = id => dispatch(deleteArticle(id));
   return (
     <div className="bg-white w-100">
       <div className="d-flex">
@@ -29,7 +35,7 @@ const Article = function ({ article }) {
         </Link>
         <div>
           <i className="fas fa-md fa-user-edit" style={{ cursor: 'pointer', marginRight: '20px' }} />
-          <i className="fas fa-md fa-trash-alt text-danger" style={{ cursor: 'pointer' }} />
+          <i onClick={() => deleteMethod(article.id)} className="fas fa-md fa-trash-alt text-danger" style={{ cursor: 'pointer' }} />
         </div>
       </div>
     </div>

@@ -16,7 +16,6 @@ const ArticleDetails = function () {
 
   const article = useSelector(state => state.articlesReducer.article);
   useEffect(() => { dispatch(fetchOneArticle(id)); }, []);
-  console.log(article, 'article');
 
   const handleChange = e => {
     const { name, value } = e.target;

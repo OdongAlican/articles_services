@@ -2,7 +2,7 @@
 
 import {
   FETCH_ALL_ARTICLES, CREATED_ARTICLE, FETCH_ONE_ARTICLE,
-  FETCH_ONE_COMMENT,
+  FETCH_ONE_COMMENT, DELETED_ARTICLE,
 } from '../actions/actionTypes/articles';
 
 const initialState = {
@@ -38,6 +38,13 @@ const articlesReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         article: { ...state.article, comments: [...state.article.comments, action.payload] },
+      };
+    case DELETED_ARTICLE:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        articles: [...state.articles.filter(article => article.id !== action.payload)],
       };
     default:
       return state;
