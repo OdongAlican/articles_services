@@ -2,6 +2,7 @@
 
 import {
   FETCH_ALL_ARTICLES, CREATED_ARTICLE, FETCH_ONE_ARTICLE,
+  FETCH_ONE_COMMENT,
 } from '../actions/actionTypes/articles';
 
 const initialState = {
@@ -31,6 +32,12 @@ const articlesReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         article: action.payload,
+      };
+    case FETCH_ONE_COMMENT:
+      return {
+        ...state,
+        loading: false,
+        article: { ...state.article, comments: [...state.article.comments, action.payload] },
       };
     default:
       return state;
