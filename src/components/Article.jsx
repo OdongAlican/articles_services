@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Image from '../images/articles.jpg';
-import Button from './Button';
 
 const Article = function ({ article }) {
   return (
@@ -24,7 +24,9 @@ const Article = function ({ article }) {
         {article.content.length < 100 ? (article.content) : (`${article.content.substring(0, 100)} ...`)}
       </div>
       <div className="button-section p-1 d-flex justify-content-between">
-        <Button name="Details" />
+        <Link className="page-button" style={{ textDecoration: 'none' }} to={`/article/${article.id}`} name="Details">
+          Details
+        </Link>
         <div>
           <i className="fas fa-md fa-user-edit" style={{ cursor: 'pointer', marginRight: '20px' }} />
           <i className="fas fa-md fa-trash-alt text-danger" style={{ cursor: 'pointer' }} />

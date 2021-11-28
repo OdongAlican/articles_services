@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard';
 import Articles from '../pages/Articles';
 import Settings from '../pages/Settings';
 import About from '../pages/About';
+import Article from '../components/ArticleDetails';
 
 const Router = function () {
   return (
@@ -19,6 +20,7 @@ const Router = function () {
             <Routes>
               <Route path="/users" element={<Users />} />
               <Route path="/articles" element={<Articles />} />
+              <Route path="/article/:id" element={<Article />} />
               <Route path="/" element={<Dashboard />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/about" element={<About />} />

@@ -10,7 +10,11 @@ const PageHeader = function ({ header, toggleModal }) {
   return (
     <div className="page-header bg-white py-1 px-3 d-flex justify-content-between">
       <div>{header}</div>
-      <Button performAction={toggleModal} name={`Create ${location.pathname === '/users' ? 'Users' : 'Articles'}`} />
+      {
+        header !== 'Articles Details' ? (
+          <Button performAction={toggleModal} name={`Create ${location.pathname === '/users' ? 'Users' : 'Articles'}`} />
+        ) : null
+      }
     </div>
   );
 };

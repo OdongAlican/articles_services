@@ -109,3 +109,56 @@ select {
   padding: 10px 0;
   grid-row-gap: 20px;
 }
+
+.articles-detailed-section {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-column-gap: 20px;
+  height: 450px;
+}
+
+.article-details-content {
+  padding: 2px;
+  font-size: 13px;
+}
+
+.articles-detailed-section .header {
+  background-color: #010131;
+  color: #fff;
+  padding: 10px;
+}
+
+.comments-section {
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.comments-section .comments-list {
+  flex: 1;
+}
+
+.comments-input-button {
+  height: 40px;
+}
+
+.comments-list {
+  padding: 10px;
+}
+
+.each-comment {
+  margin-bottom: 10px;
+  background-color: #F7F7F9;
+  padding: 5px;
+}
+
+.each-comment div {
+  font-size: 15px;
+}
+
+.comment-author {
+  color: #444;
+  padding-right: 20px;
+}

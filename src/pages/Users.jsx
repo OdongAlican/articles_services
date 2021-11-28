@@ -60,7 +60,7 @@ const Users = function () {
         </Modal>
       )}
       <PageHeader header="Users List" toggleModal={displayModalCreate} />
-      <div className="bg-info">
+      <div>
         {
           usersData.map(user => (
             <div key={user.id} className="container">

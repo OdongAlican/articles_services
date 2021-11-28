@@ -2,7 +2,7 @@
 
 import {
   PENDING_REQUEST, METHODS, FETCH_ALL_ARTICLES,
-  FAILED_REQUEST, CREATED_ARTICLE,
+  FAILED_REQUEST, CREATED_ARTICLE, FETCH_ONE_ARTICLE,
 } from './actionTypes/articles';
 import { GetRequest, PostRequest } from './utils/requests';
 import SERVER_REQUEST from './routes/index';
@@ -17,7 +17,6 @@ export const fetchAllArticles = () => async dispatch => {
 
 export const createArticle = data => async dispatch => {
   const result = { ...data, user_id: 3 };
-  console.log(result);
   dispatch({ type: PENDING_REQUEST });
   const response = await PostRequest(
     METHODS.post,
@@ -26,5 +25,13 @@ export const createArticle = data => async dispatch => {
   );
   if (response?.data) {
     dispatch({ type: CREATED_ARTICLE, payload: response?.data });
+  } else { dispatch({ type: FAILED_REQUEST, payload: response?.message }); }
+};
+
+export const fetchOneArticle = id => async dispatch => {
+  dispatch({ type: PENDING_REQUEST });
+  const response = await GetRequest(METHODS.get, `${SERVER_REQUEST.FETCH_ALL_ARTICLES_ROUTE}/${id}`);
+  if (response?.data) {
+    dispatch({ type: FETCH_ONE_ARTICLE, payload: response?.data });
   } else { dispatch({ type: FAILED_REQUEST, payload: response?.message }); }
 };

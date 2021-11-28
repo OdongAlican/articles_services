@@ -1,13 +1,14 @@
 /* eslint-disable default-param-last */
 
 import {
-  FETCH_ALL_ARTICLES, CREATED_ARTICLE,
+  FETCH_ALL_ARTICLES, CREATED_ARTICLE, FETCH_ONE_ARTICLE,
 } from '../actions/actionTypes/articles';
 
 const initialState = {
   articles: [],
   error: '',
   loading: false,
+  article: {},
 };
 
 const articlesReducer = (state = initialState, action) => {
@@ -24,6 +25,12 @@ const articlesReducer = (state = initialState, action) => {
         loading: false,
         error: '',
         articles: [...state.articles, action.payload],
+      };
+    case FETCH_ONE_ARTICLE:
+      return {
+        ...state,
+        loading: false,
+        article: action.payload,
       };
     default:
       return state;
