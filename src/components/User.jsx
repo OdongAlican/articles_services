@@ -8,7 +8,7 @@ import Female from '../images/female.jpg';
 
 const User = function ({ data, toggleModal }) {
   const [user, setUser] = useState({});
-  useMemo(() => { setUser(data); }, []);
+  useMemo(() => { setUser(data); }, [data]);
   return (
     <div className="d-flex">
       <div>
