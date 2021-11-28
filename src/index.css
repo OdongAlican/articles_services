@@ -10,7 +10,6 @@ i {
 
 .nav-bar-component {
   height: 80px;
-  position: sticky;
 }
 
 .active-nav {
@@ -85,4 +84,20 @@ select {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
+}
+
+.article-author {
+  font-size: 11px;
+  font-weight: bold;
+  color: #777;
+}
+
+.article-header {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.article-text {
+  font-size: 12px;
+  color: #666;
 }

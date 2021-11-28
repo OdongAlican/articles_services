@@ -1,0 +1,13 @@
+export const FETCH_ALL_ARTICLES = 'FETCH_ALL_ARTICLES';
+export const FETCH_ALL_ARTICLES_FAILURE = 'FETCH_ALL_ARTICLES_FAILURE';
+export const FETCH_ONE_ARTICLE = 'FETCH_ONE_ARTICLE';
+export const CREATED_ARTICLE = 'CREATED_ARTICLE';
+export const UPDATED_ARTICLE = 'UPDATED_ARTICLE';
+export const DELETED_ARTICLE = 'DELETED_ARTICLE';
+export const FETCH_ONE_ARTICLE_FAILURE = 'FETCH_ONE_ARTICLE_FAILURE';
+export const PENDING_REQUEST = 'PENDING_REQUEST';
+export const FAILED_REQUEST = 'FAILED_REQUEST';
+
+export const METHODS = {
+  post: 'post', get: 'get', update: 'put', delete: 'delete',
+};

@@ -9,3 +9,11 @@ export const validateUser = (values, state) => {
   if (!values.phone) { errors.phone = 'Required'; }
   return errors;
 };
+
+export const validateArticle = (values, state) => {
+  const errors = {};
+  if (state === 'create state') { errors.state = 'create'; }
+  if (!values.content) { errors.content = 'Required'; }
+  if (!values.title) { errors.title = 'Required'; }
+  return errors;
+};
