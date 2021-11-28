@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import Input from './Input';
 import Button from './Button';
 import { validateUser } from '../helpers/velidator';
-import { createUser } from '../actions/users';
+import { createUser, updateUser } from '../actions/users';
 import Error from './Error';
 
 const initialSate = {
@@ -16,20 +16,23 @@ const initialSate = {
   phone: '',
 };
 
-const UserForm = function ({ toggleModal }) {
+const UserForm = function ({ toggleModal, data }) {
   const [values, setValues] = useState(initialSate);
   const [errors, setErrors] = useState(initialSate);
   const dispatch = useDispatch();
+
+  useMemo(() => { if (typeof data === 'object') { setValues(data); } }, [data]);
+
   const handleChange = e => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
+    const { name, value } = e.target; setValues({ ...values, [name]: value });
   };
 
   const validateForm = () => setErrors(validateUser(values, 'create state'));
   useEffect(() => {
     if (Object.values(errors).includes('create')) {
       if (Object.keys(errors).length === 1) {
-        dispatch(createUser(values)); toggleModal();
+        if (typeof data === 'string') { dispatch(createUser(values)); toggleModal(); }
+        if (typeof data === 'object') { dispatch(updateUser(values, data.id)); toggleModal(); }
       }
     }
   }, [errors]);

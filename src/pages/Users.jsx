@@ -15,23 +15,35 @@ import UserForm from '../components/UserForm';
 
 const Users = function () {
   const [usersData, setUsersData] = useState([]);
-  const [modal, setModal] = useState(false);
+  const [modalCreate, setModalCreate] = useState(false);
+  const [modalEdit, setmodalEdit] = useState(false);
+  const [newDetails, setNewDetails] = useState({});
   const dispatch = useDispatch();
   const users = useSelector(state => state.usersReducer.users);
   useEffect(() => { setUsersData([usersTableHeader, ...users]); }, [users]);
   useEffect(() => { dispatch(fetchAllUsers()); }, []);
-  const displayModal = () => setModal(!modal);
+  const displayModalCreate = () => { setmodalEdit(false); setModalCreate(!modalCreate); };
+  const displayModalEdit = data => {
+    setModalCreate(false); setmodalEdit(!modalEdit); setNewDetails(data);
+  };
   const removeUser = id => dispatch(deleteUser(id));
   return (
     <ContentWrapper>
-      {modal && (
-      <Modal>
-        <ModalForm header="Create User" toggleModal={displayModal}>
-          <UserForm toggleModal={displayModal} />
-        </ModalForm>
-      </Modal>
+      {modalCreate && (
+        <Modal>
+          <ModalForm header="Create User" toggleModal={displayModalCreate}>
+            <UserForm data="create" toggleModal={displayModalCreate} />
+          </ModalForm>
+        </Modal>
       )}
-      <PageHeader header="Users List" toggleModal={displayModal} />
+      {modalEdit && (
+        <Modal>
+          <ModalForm header={`Update ${`${newDetails.first_name} ${newDetails.last_name}`}'s Information`} toggleModal={displayModalEdit}>
+            <UserForm data={newDetails} toggleModal={displayModalEdit} />
+          </ModalForm>
+        </Modal>
+      )}
+      <PageHeader header="Users List" toggleModal={displayModalCreate} />
       <div>
         {
           usersData.map(user => (
@@ -54,7 +66,7 @@ const Users = function () {
                 <div className="col-sm d-flex align-items-center">
                   { user.id !== 0 ? (
                     <div>
-                      <i className="fas fa-lg fa-user-edit" style={{ cursor: 'pointer', marginRight: '20px' }} />
+                      <i onClick={() => displayModalEdit(user)} className="fas fa-lg fa-user-edit" style={{ cursor: 'pointer', marginRight: '20px' }} />
                       <i onClick={() => removeUser(user.id)} className="fas fa-lg fa-trash-alt text-danger" style={{ cursor: 'pointer' }} />
                     </div>
                   ) : ''}
