@@ -34,14 +34,16 @@ const Articles = function () {
       </Modal>
       )}
       <PageHeader header="Articles List" toggleModal={displayModalCreate} />
-      <div className="row py-3 ">
-        {
+      <div className="w-100">
+        <div className="w-100 article-grid" style={{ overflowY: 'auto', height: '500px' }}>
+          {
           articles.map(article => (
-            <div key={article.id} className="col-sm-3 mb-3">
+            <div key={article.id}>
               <Article article={article} />
             </div>
           ))
         }
+        </div>
       </div>
     </ContentWrapper>
   );

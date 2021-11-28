@@ -11,7 +11,7 @@ const Article = function ({ article }) {
           <img src={Image} alt="Article" style={{ width: '100%' }} />
         </div>
         <div className="w-50 p-1">
-          <div className="h5 article-header">{article.content.title}</div>
+          <div className="article-header">{article.title}</div>
           <div className="h6 article-author">
             By:
             {' '}
